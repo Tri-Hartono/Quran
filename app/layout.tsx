@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import { Roboto } from 'next/font/google';
 import Providers from './providers';
 import ScrolltoTop from '@/components/ScrolltoTop';
-import Logo from './../public/logo256.png';
+import Logo from './../public/logo.svg';
 
 const Robboto = Roboto({
   weight: '400',

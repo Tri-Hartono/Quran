@@ -17,8 +17,8 @@ const Surah = () => {
   const contentType = useSelector((state: RootState) => state.content.currentContentType);
   const [query, setQuery] = useState<string>('');
 
-  const filtered = surat?.data.filter((s: SurahType) => {
-    const normalizeSurat = s.namaLatin.toLowerCase().replace('-', '');
+  const filtered = surat?.data.filter((item) => {
+    const normalizeSurat = item.namaLatin.toLowerCase().replace('-', '');
     return normalizeSurat.includes(query);
   });
 
@@ -57,14 +57,14 @@ const Surah = () => {
           <div>Loading Data</div>
         ) : (
           <div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 pb-4">
               {contentType === 'surat' &&
                 surat?.data
-                  .filter((s: SurahType) => {
-                    const normalizeSurat = s.namaLatin.toLowerCase().replace('-', '');
+                  .filter((item) => {
+                    const normalizeSurat = item.namaLatin.toLowerCase().replace('-', '');
                     return normalizeSurat.includes(query);
                   })
-                  .map((surat: SurahType) => {
+                  .map((surat) => {
                     return <ListSurah key={surat.nomor} nomor={surat.nomor} nama={surat.nama} namaLatin={surat.namaLatin} jumlahAyat={surat.jumlahAyat} arti={surat.arti} />;
                   })}
             </div>

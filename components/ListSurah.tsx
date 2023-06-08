@@ -1,8 +1,8 @@
-import { SurahType } from '@/types/Surah';
+import { DataSurah } from '@/types/Surah';
 import Link from 'next/link';
 import React from 'react';
 
-export default function ListSurah({ nomor, nama, namaLatin, jumlahAyat, arti }: SurahType) {
+export default function ListSurah({ nomor, nama, namaLatin, jumlahAyat, arti }: DataSurah) {
   return (
     <Link href={`/surah/${nomor}`} className="flex items-center justify-between border shadow  rounded-md  pr-6  overflow-hidden">
       <div className="flex gap-2 items-center  h-full">

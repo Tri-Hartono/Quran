@@ -2,7 +2,7 @@
 import React, { Suspense, useState } from 'react';
 import SuratNavigation from '@/components/SuratNavigation';
 import { Ayat } from '@/types/Ayat';
-import { SurahType } from '@/types/Surah';
+import { DataSurah } from '@/types/Surah';
 import axios from 'axios';
 import { HiSearch } from 'react-icons/hi';
 import Link from 'next/link';
@@ -17,8 +17,8 @@ export default async function DetailSurah({ params }: { params: { detailsurah: s
   const dataSurah = await getDataUsers(params.detailsurah);
   console.log(dataSurah);
 
-  const suratSelanjutnya: SurahType = dataSurah.data.suratSelanjutnya;
-  const suratSebelumnya: SurahType = dataSurah.data.suratSebelumnya;
+  const suratSelanjutnya: DataSurah = dataSurah.data.suratSelanjutnya;
+  const suratSebelumnya: DataSurah = dataSurah.data.suratSebelumnya;
 
   const isSuratSelesai = !suratSelanjutnya;
   return (

@@ -3,8 +3,8 @@ import './globals.css';
 import Footer from '@/components/Footer';
 import { Roboto } from 'next/font/google';
 import Providers from './providers';
-import { HiArrowSmUp } from 'react-icons/hi';
 import ScrolltoTop from '@/components/ScrolltoTop';
+
 const Robboto = Roboto({
   weight: '400',
   subsets: ['latin'],

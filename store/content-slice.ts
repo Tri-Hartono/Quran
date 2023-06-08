@@ -1,6 +1,6 @@
 import { SurahType } from '@/types/Surah';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ErrorFetchDataResponse } from '@/lib/type';
+import { ErrorFetchDataResponse } from '@/types/type';
 import axios, { AxiosError } from 'axios';
 
 export const fetchSurat = createAsyncThunk<SurahType, null, { rejectValue: ErrorFetchDataResponse }>('data/fetch-surah', async (_, { rejectWithValue }) => {
@@ -17,7 +17,7 @@ export const fetchSurat = createAsyncThunk<SurahType, null, { rejectValue: Error
 });
 
 interface State {
-  surat: any | undefined;
+  surat: SurahType | undefined;
   currentContentType: string;
   status: string;
   error: undefined | object;

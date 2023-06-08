@@ -15,7 +15,6 @@ const getDataUsers = async (param: string) => {
 export default async function DetailSurah({ params }: { params: { detailsurah: string } }) {
   const [modal, setModal] = useState(false);
   const dataSurah = await getDataUsers(params.detailsurah);
-  console.log(dataSurah);
 
   const suratSelanjutnya: DataSurah = dataSurah.data.suratSelanjutnya;
   const suratSebelumnya: DataSurah = dataSurah.data.suratSebelumnya;

@@ -22,6 +22,10 @@ export const metadata = {
       height: 257,
     },
   ],
+  icons: {
+    icon: { url: Logo, type: 'image/svg' },
+    shortcut: { url: Logo, type: 'image/svg' },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

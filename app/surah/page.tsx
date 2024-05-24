@@ -22,10 +22,11 @@ const Surah = () => {
    );
    const [query, setQuery] = useState<string>("");
 
-   const filtered = surat?.data.filter((item) => {
-      const normalizeSurat = item.namaLatin.toLowerCase().replace("-", "");
-      return normalizeSurat.includes(query);
-   });
+   const filtered =
+      surat?.data?.filter((item) => {
+         const normalizeSurat = item.namaLatin.toLowerCase().replace("-", "");
+         return normalizeSurat.includes(query.toLowerCase());
+      }) || [];
 
    useEffect(() => {
       if (contentType === "surat" && surat === undefined) {
@@ -45,18 +46,20 @@ const Surah = () => {
 
    return (
       <div>
-         <div className="flex items-center relative gap-2 py-4 w-auto justify-end overflow-x-hidden ">
+         <div className="flex items-center relative gap-2 py-4 w-full justify-end overflow-x-hidden ">
             <input
                onChange={(event) => setQuery(event.target.value)}
                type="text"
-               placeholder="cari surah sesuai nama"
-               className={`text-zinc-900 rounded-md px-4 py-2 focus:outline-none bg-white w-full transition-all duration-300  ${
-                  active ? "scale-100" : "scale-0 "
+               placeholder="cari surah sesuai nama surah"
+               className={`text-zinc-900 rounded-md px-4 py-2 focus:outline-none bg-white w-full duration-300 shadow-lg z-0 absolute transform transition-transform ${
+                  active
+                     ? "translate-x-0 opacity-100"
+                     : "translate-x-full opacity-0"
                } `}
             />
             <div
                onClick={() => setActive(!active)}
-               className="p-2 bg-blue-400 text-zinc-100 rounded-md"
+               className="p-2 bg-blue-400 text-zinc-100 rounded-md z-20 cursor-pointer mr-1"
             >
                <HiSearch className="w-5 h-5" />
             </div>
@@ -71,25 +74,18 @@ const Surah = () => {
                <div>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 pb-4">
                      {contentType === "surat" &&
-                        surat?.data
-                           .filter((item) => {
-                              const normalizeSurat = item.namaLatin
-                                 .toLowerCase()
-                                 .replace("-", "");
-                              return normalizeSurat.includes(query);
-                           })
-                           .map((surat) => {
-                              return (
-                                 <ListSurah
-                                    key={surat.nomor}
-                                    nomor={surat.nomor}
-                                    nama={surat.nama}
-                                    namaLatin={surat.namaLatin}
-                                    jumlahAyat={surat.jumlahAyat}
-                                    arti={surat.arti}
-                                 />
-                              );
-                           })}
+                        filtered.map((surat) => {
+                           return (
+                              <ListSurah
+                                 key={surat.nomor}
+                                 nomor={surat.nomor}
+                                 nama={surat.nama}
+                                 namaLatin={surat.namaLatin}
+                                 jumlahAyat={surat.jumlahAyat}
+                                 arti={surat.arti}
+                              />
+                           );
+                        })}
                   </div>
                </div>
             )}
